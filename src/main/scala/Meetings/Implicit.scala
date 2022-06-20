@@ -1,3 +1,5 @@
+package Meetings
+
 object Implicit extends App {
 
   object Converter {
@@ -6,12 +8,14 @@ object Implicit extends App {
   }
 
   import Converter.intToString
+
   val a: Int = 1
   val b: String = a
   println(b)
 
   // WHY? Bad case
   def magic(s: String): String = s
+
   magic(a)
 
   // example with Class

@@ -1,3 +1,5 @@
+package Meetings
+
 object Implicit2 extends App {
 
   class Yaml(s: String) {

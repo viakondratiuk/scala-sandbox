@@ -1,3 +1,5 @@
+package Meetings
+
 object Generics extends App {
 
   class Container[Subtype](var value: Subtype) {
@@ -11,6 +13,7 @@ object Generics extends App {
 
 
   def plus1(s: Container[Int]) = s.value + 2
+
   def plus2(s: Container[String]) = s.value + 2
 
   println(plus1(integer))
