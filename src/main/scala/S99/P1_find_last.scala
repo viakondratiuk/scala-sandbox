@@ -1,7 +1,7 @@
 package S99
 
 // https://www.thedigitalcatonline.com/blog/2015/04/07/99-scala-problems-01-find-last-element/
-object P1 extends App {
+object P1_find_last extends App {
 
   def last[A](l: List[A]): A = l match {
     case h :: Nil => h
