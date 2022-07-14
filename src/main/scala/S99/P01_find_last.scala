@@ -3,7 +3,7 @@ package S99
 import scala.annotation.tailrec
 
 // https://www.thedigitalcatonline.com/blog/2015/04/07/99-scala-problems-01-find-last-element/
-object P1_find_last extends App {
+object P01_find_last extends App {
 
   // WIL: 1. Polymorphism with A as generic
   // WIL: 2. List(h) to test one element
