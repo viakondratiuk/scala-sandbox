@@ -25,15 +25,16 @@ object P01_find_last extends App {
   println(last(five))
   println(last(fiveStrings))
 
-  class -->(val head: String, val tail: String)
-  object --> {
-    def unapply(data: -->): Option[(String, String)] =
-      Some((data.head, data.tail))
+//  class -->(val head: String, val tail: String)
+  object -> {
+    def unapply(data: (String, String)): Option[(String, String)] =
+      Some((data._1, data._2))
   }
 
-  val l = new -->("big", "long")
+//  val l = new -->("big", "long")
+  val l = ("big", "long")
   val fake = l match {
-    case h --> t => s"Yes, my head is $h and tail is $t"
+    case h -> t => s"Yes, my head is $h and tail is $t"
     case _ => "No Match"
   }
 
