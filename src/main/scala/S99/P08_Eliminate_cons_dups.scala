@@ -1,21 +1,6 @@
 package S99
 
 object P08_Eliminate_cons_dups extends App {
-  // TODO: Think global - find patterns at this and prev tasks
-
-  /*
-   1. dup - dup - el - el
-   2. el - dup - dup - el
-   3. el - el - dup - dup
-   4. el - el - el - el
-   */
-
-  val l0 = List()
-  val l1 = List(1, 1, 2, 3)
-  val l2 = List(1, 2, 2, 3)
-  val l3 = List(1, 2, 3, 3)
-  val l4 = List(1, 2, 3, 4)
-  val la = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
 
   def eliminateDups[A](l: List[A], noDup: List[A] = Nil, last: Option[A] = None): List[A] =
     (l, last) match {
@@ -32,14 +17,8 @@ object P08_Eliminate_cons_dups extends App {
     case h :: t => h :: compress(t)
   }
 
-  /*
-  List(1,2,2,3)
-  List() 1 -> List(1)
-  List(1) 2 -> List(1, 2)
-  List(1, 2) 2 -> List(1, 2)
-  List(1, 2) 3 -> List(1, 2, 3)
-   */
-
+  // WIL1: Using foldLeft
+  // WIL2: Partial functions can convert from one type to other type, cant accept several params
   // cant create partial function, because it accepts only 1 param
   def folder[A](ls: List[A], e: A): List[A] = (ls, e) match {
     case (Nil, e) => List(e)
@@ -49,10 +28,16 @@ object P08_Eliminate_cons_dups extends App {
 
   def compressFoldLeft[A](l: List[A]): List[A] = l.foldLeft(List[A]())(folder)
 
-  println(compressFoldLeft(l0))
-  println(compressFoldLeft(l1))
-  println(compressFoldLeft(l2))
-  println(compressFoldLeft(l3))
-  println(compressFoldLeft(l4))
-  println(compressFoldLeft(la))
+  val l0 = List()
+  val l1 = List(1, 1, 2, 3)
+  val l2 = List(1, 2, 2, 3)
+  val l3 = List(1, 2, 3, 3)
+  val l4 = List(1, 2, 3, 4)
+  val la = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
+
+  assert(compress(l0) == List())
+  assert(compress(l1) == List(1,2,3))
+  assert(compress(l2) == List(1,2,3))
+  assert(compress(l3) == List(1,2,3))
+  assert(compress(la) == List('a, 'b, 'c, 'a, 'd, 'e))
 }
