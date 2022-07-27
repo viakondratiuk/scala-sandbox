@@ -2,6 +2,8 @@ package S99
 
 object P11_Modified_run_length_encoding extends App {
 
+  // WIL1: Either with Left and Right can select a type
+  // WIL2: Pattern matching instead of if/else
   // List(1, 1, 1, 2, 1, 1) -> List((3, 1), 2, (2, 1))
   def encode[A](l: List[A]): List[Either[A, (Int, A)]] = {
 

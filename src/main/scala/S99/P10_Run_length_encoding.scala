@@ -2,6 +2,8 @@ package S99
 
 object P10_Run_length_encoding extends App {
 
+  // WIL1: Anonymous functions at map body
+  // TODO: try package
   // List(1, 1, 1, 2, 1, 1) -> List((3, 1), (1, 2), (2, 1))
   def encode[A](l: List[A]): List[(Int, A)] = {
 
