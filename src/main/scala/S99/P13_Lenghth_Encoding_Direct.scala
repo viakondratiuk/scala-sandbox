@@ -2,6 +2,7 @@ package S99
 
 object P13_Lenghth_Encoding_Direct extends App {
 
+  // 16, 17, 18, 19, 20, 21, 22, 23
   def encodeDirect[A](l: List[A]): List[(Int, A)] = {
     def _encodeDirect[B](c: Int, l1: List[B]): List[(Int, B)] = l1 match {
       case Nil => Nil
@@ -24,4 +25,15 @@ object P13_Lenghth_Encoding_Direct extends App {
 
   println(encodeDirect(l3))
   println(encodeDirect(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)))
+
+  val v = for {
+    i <- List(1,2,3,4)
+  } yield
+  {
+
+    val x = i + 5
+    println(x)
+    x
+  }
+  println(v)
 }
