@@ -77,5 +77,16 @@ object Function_Method_Class_Object_Trait extends App {
 
   // C. Takes out static functionality from instance, main building block
 
-  // Trait
+  /*** Trait ***/
+  // A. They share methods and fields between classes. Cant create instance from them.
+  // Classes and objects can extend them. Dont have params?
+  // Adds multiple inheritance.
+  // In JVM linearization happens
+
+  // B.
+  trait One
+  trait Two extends One
+
+  // C. It can be used as interfaces. Defining the same concepts for classes.
+  // One more method to reuse code
 }
