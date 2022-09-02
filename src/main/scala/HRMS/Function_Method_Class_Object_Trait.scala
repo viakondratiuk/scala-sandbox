@@ -51,7 +51,31 @@ object Function_Method_Class_Object_Trait extends App {
   // it tightly related to Functions
 
   /*** Class ***/
+  // A. Class organizes data and behaviour,
+  // Its a template to create object instances
+  // Can have constructor(or multiple)
+  // Can have params, fields, methods, default vals, aux constructors
+  // Inheritance - can extend other classes
+  // Polymorphism - subclasses can change behaviour of parent
+  // Encapsulation - privacy control
 
-  // Object
+  // B. class <identifier> [extends <identifier>] [{ fields, methods, and classes }]
+  class Car(val make: String, var reserved: Boolean) {
+    def reserve(r: Boolean): Unit = { reserved = r }
+  }
+
+  // C. Fundamental block, basic OOP block
+
+  /*** Object ***/
+  // A. All static functionality goes to Object
+  // Instance based func is in Class and global in Object
+  // Special type of class They are Singletons and instantiated when called
+  // Don't have parameters
+
+  // B. object <identifier> [extends <identifier>] [{ fields, methods, and classes }]
+  object Person
+
+  // C. Takes out static functionality from instance, main building block
+
   // Trait
 }
