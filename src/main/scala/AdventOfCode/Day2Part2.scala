@@ -25,6 +25,18 @@ object Day2Part2 extends App {
 
   val source = scala.io.Source.fromResource("day2.txt")
   val lines = source.getLines()
-  println(lazyRecursion(lines))
+  val (lines1, lines2) = lines.duplicate
+  println(lazyRecursion(lines1))
+
+  val (hor, depth, aim) = lines2
+    .map(_.split(" ")) // exampl1
+    .map(a => (a.head, a.last.toInt)) // example
+    .foldLeft((0, 0, 0)) {
+      case ((h, d, a), ("down", del))    =>  (h, d, a + del)
+      case ((h, d, a), ("up", del))      =>  (h, d, a - del)
+      case ((h, d, a), ("forward", del)) =>  (h + del, d + a * del, a)
+    }
+  println(hor * depth)
+
   source.close()
 }
