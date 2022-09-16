@@ -5,6 +5,7 @@ object Day3 extends App {
   val (lines1, lines2) = source.getLines().duplicate
   val size = lines2.size
 
+  // TODO: Try to use reduce
   val ones = lines1
     .map(_.split("").map(_.toInt))
     .foldLeft(Array(0,0,0,0,0,0,0,0,0,0,0,0))(
