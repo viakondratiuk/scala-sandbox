@@ -57,4 +57,15 @@ object Basic_Monad extends App {
     def unit(value: A): MonadTemplate[A]
     def flatMap[B](f: A => MonadTemplate[B]): MonadTemplate[B]
   }
+
+  val func = (x: Int) => Option(x + 3)
+  val func2 = (x: Int) => Option(x + 5)
+  val a = 3
+
+  // 1
+  assert(Option(a).flatMap(func) == func(a))
+  // 2
+  assert(Option(a).flatMap(Option(_)) == Option(a))
+  // 3
+  assert(Option(a).flatMap(func).flatMap(func2) == Option(a).flatMap(x => func(x).flatMap(func2)))
 }
