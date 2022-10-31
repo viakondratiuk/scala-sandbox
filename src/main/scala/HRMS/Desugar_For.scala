@@ -16,6 +16,6 @@ object Desugar_For extends App {
   for {
     res <- result
     if res == 42
-  } yield res + 4
+  } yield res + "4"
 
 }
