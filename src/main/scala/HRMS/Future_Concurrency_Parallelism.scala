@@ -58,9 +58,9 @@ object Future_Concurrency_Parallelism extends App {
   val promise = Promise[Int]() // controller over future
   val future = promise.future
 
-  future.onComplete {
-    case Success(r) => println(s"[consumer] received $r")
-  }
+//  future.onComplete {
+//    case Success(r) => println(s"[consumer] received $r")
+//  }
 
   val producer = new Thread(() => {
     println("[producer] do comps")

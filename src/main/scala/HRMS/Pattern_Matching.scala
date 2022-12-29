@@ -40,13 +40,13 @@ object Pattern_Matching extends App{
 
   // And there some implications
   // #1 try-catch about PM
-  try {
-    // code
-  } catch {
-    case e: RuntimeException => "runtime"
-    case npe: NullPointerException => "npe"
-    case _ => "something else"
-  }
+//  try {
+//    // code
+//  } catch {
+//    case e: RuntimeException => "runtime"
+//    case npe: NullPointerException => "npe"
+//    case _ => "something else"
+//  }
   // #2 generators
   val tuples = List((1,2), (3,4))
   val filterTuples = for {

@@ -39,18 +39,17 @@ object CaseClass_Inheritance_Mutable_Unapply extends App {
   case class Cat(name: String, age: Int) extends Animal
   case class Fish(fromSea: Boolean) extends Animal
 
-  def patternMatch(a: Animal) = a match {
-    case Dog(c) => println(s"Dog $c")
-    case Cat(n, a) => println(s"Cat $n and $a")
-  }
+//  def patternMatch(a: Animal) = a match {
+//    case Dog(c) => println(s"Dog $c")
+//    case Cat(n, a) => println(s"Cat $n and $a")
+//  }
 
   val dog: Animal = Dog("black")
-  patternMatch(dog)
+//  patternMatch(dog)
 
   sealed trait Notification
   case class Email(sender: String, title: String, body: String) extends Notification
   case class SMS(caller: String, message: String) extends Notification
-  case class VoiceRecording(contactName: String, link: String) extends Notification
 
   def showNotification(notification: Notification): String = {
     notification match {

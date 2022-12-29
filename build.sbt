@@ -1,4 +1,3 @@
 scalacOptions ++= Seq(
-  "-Xfatal-warnings",
   //...
 )

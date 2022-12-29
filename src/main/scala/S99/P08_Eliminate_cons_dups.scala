@@ -20,13 +20,13 @@ object P08_Eliminate_cons_dups extends App {
   // WIL1: Using foldLeft
   // WIL2: Partial functions can convert from one type to other type, cant accept several params
   // cant create partial function, because it accepts only 1 param
-  def folder[A](ls: List[A], e: A): List[A] = (ls, e) match {
-    case (Nil, e) => List(e)
-    case (ls: List[A], e: A) if ls.last == e => ls
-    case (ls: List[A], e: A) => ls :+ e
-  }
+//  def folder[A](ls: List[A], e: A): List[A] = (ls, e) match {
+//    case (Nil, e) => List(e)
+//    case (ls: List[A], e: A) if ls.last == e => ls
+//    case (ls: List[A], e: A) => ls :+ e
+//  }
 
-  def compressFoldLeft[A](l: List[A]): List[A] = l.foldLeft(List[A]())(folder)
+//  def compressFoldLeft[A](l: List[A]): List[A] = l.foldLeft(List[A]())(folder)
 
   val l0 = List()
   val l1 = List(1, 1, 2, 3)
