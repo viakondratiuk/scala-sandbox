@@ -1,2 +1,3 @@
-# mm-scala
-Mentor Mentee Scala Learning
+# scala-sanbox
+
+Different experiments with Scala
