@@ -2,6 +2,10 @@ package concurrent
 
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 
+
+// Why Actors: distributed, async, fault tolerance, delivery guarantee(at most once), mailbox
+// Fault tolerance[kernel error]: Supervision strategy(default: restart)
+// Actor stop throw poison pill message
 object Actors extends App {
 
   // 1. Actor System: Creation of ActorSystem
