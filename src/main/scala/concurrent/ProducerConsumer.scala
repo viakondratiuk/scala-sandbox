@@ -1,4 +1,4 @@
-package threads
+package concurrent
 
 import scala.collection.mutable
 import scala.util.Random

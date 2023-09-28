@@ -1,10 +1,9 @@
-package future
+package concurrent
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import scala.concurrent.{Await, Future, Promise}
-import scala.util.Random
-import scala.util.{Failure, Random, Success, Try}
+import scala.util.{Random, Success}
 
 object UserProfileFetcher {
 

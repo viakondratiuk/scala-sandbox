@@ -1,4 +1,4 @@
-package actors
+package concurrent
 
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 
