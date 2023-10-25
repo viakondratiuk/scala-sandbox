@@ -1,0 +1,22 @@
+Big(O) - worst case
+Big(Ω) - best case
+Big(Θ) - avg case
+
+Merge Sort: O(n*logn)
+Quick Sort: O(n*logn) O(n*logn) O(n2)
+
+Also space complexity.
+
+Show image.
+
+Divide and Conquer
+
+-- Divide: split a problem on smaller once
+-- Conquer: solve sub problems recursively or directly
+-- Combine: combine solutions
+
+Efficient, Parallel, Simple
+
+Merge Sort, Quick Sort, Binary Search
+
+n log n
