@@ -26,11 +26,8 @@ object NumberOfInversions extends App {
         val (left, right) = input.splitAt(input.length / 2)
 
         val (sortedLeft, invLeft) = mergeSort(left)
-//        println(s"[${sortedLeft.mkString(",")}], $invLeft")
         val (sortedRight, invRight) = mergeSort(right)
-//        println(s"[${sortedRight.mkString(",")}], $invRight")
         val (sorted, invSplit) = merge(sortedLeft, sortedRight)
-//        println(s"[${sorted.mkString(",")}], $invLeft, $invRight, $invSplit")
 
         (sorted, invLeft + invRight + invSplit)
       }

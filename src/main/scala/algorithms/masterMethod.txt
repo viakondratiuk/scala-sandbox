@@ -1,0 +1,43 @@
+T(n) = aT(n/b) + f(n)
+
+n - problem size
+a - number of sub problems at each level(bottom is 1)
+b - reduction factor of sub problems (> 1)
+f(n) - work outside recursion
+
+1) f(n) < n^log_b(a), T(n) = Θ(n^log_b(a))
+2) f(n) == n^log_b(a), T(n) = Θ(n^log_b(a)*log_n)
+3) f(n) > n^log_b(a), T(n) = Θ(f(n))
+
+- Merge Sort
+T(n) = aT(n/b) + f(n)
+a = 2, b = 2, f(n) = O(n)
+T(n) = 2T(n/2) + O(n)
+
+n^log_b(a) = n^log_2(2) = O(n)
+T(n)=Θ(n*log_n)
+
+- Quick sort
+Best:
+T(n) = 2T(n/2) + O(n)
+
+n^log_b(a) = n^log_2(2) = O(n)
+T(n)=Θ(n*log_n)
+
+Worst:
+T(n)=T(n−1) + Θ(n)
+Θ(n^2)
+
+- Binary search
+T(n) = aT(n/b) + f(n)
+a = 1, b = 2, f(n) = O(1)
+
+T(n) = T(n/2) + O(1)
+log_n
+
+- Strassen algorithm
+T(n) = aT(n/b) + f(n)
+a = 7, b = 2, f(n) = Θ(n^2)
+
+T(n) = 7T(n/2) + Θ(n^2)
+T(n) = Θ(n^log_2(7)) == 2.81
