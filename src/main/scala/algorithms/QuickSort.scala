@@ -35,8 +35,21 @@ object QuickSort extends App {
     a
   }
 
+  def functional(a: Array[Int]): Array[Int] = {
+    if (a.length == 1) a
+    else {
+      val pivot = a(0)
+      val (l, r) = a.tail.partition(_ < pivot)
+      functional(l) ++ Array(pivot) ++ functional(r)
+    }
+  }
+
   val a9 = Array(5, 3, 6, 4, 1, 8, 2, 7, 9)
-  println(s"quick sort: ${sort(a9).mkString(", ")}")
   val a8 = Array(5, 3, 6, 4, 1, 8, 2, 7)
-  println(s"quick sort: ${sort(a8).mkString(", ")}")
+
+//  println(s"quick sort: ${sort(a9).mkString(", ")}")
+//  println(s"quick sort: ${sort(a8).mkString(", ")}")
+
+  println(s"quick sort func: ${sort(a8).mkString(", ")}")
+  println(s"quick sort func: ${sort(a9).mkString(", ")}")
 }
