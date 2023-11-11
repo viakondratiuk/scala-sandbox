@@ -41,3 +41,15 @@ a = 7, b = 2, f(n) = Θ(n^2)
 
 T(n) = 7T(n/2) + Θ(n^2)
 T(n) = Θ(n^log_2(7)) == 2.81
+
+
+Recursion Size Property (RSP):
+ This refers to how the problem size reduces in each recursive call.
+ In many divide-and-conquer algorithms, the problem size is divided by a factor in
+ each recursive step.
+
+Recursion Work Split (RWS):
+ This concerns how the total work is divided among the recursive calls and the non-recursive work.
+ The total work done in a recursive algorithm can be split
+ into the work done in the recursive calls and the work done outside these calls
+ (e.g., combining the results).
