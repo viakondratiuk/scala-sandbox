@@ -70,4 +70,37 @@ object BfsDfs extends App {
 
   println("\nDFS:")
   dfs.dfs(graph, 0)
+
+  /*
+  ### Breadth-First Search (BFS)
+
+  #### Pros:
+  1. Finds the shortest path in unweighted graphs.
+  2. Useful for level-order traversal.
+  3. Effective for connectivity testing.
+  4. Ideal for spreading processes like networking or social graphs.
+
+  #### Cons:
+  1. More memory-intensive, especially for wide graphs.
+  2. Can be slower for deep target nodes.
+
+  #### Best Use Case:
+  - Suited for finding shortest paths and situations where closer nodes are prioritized.
+
+  ### Depth-First Search (DFS)
+
+  #### Pros:
+  1. Memory-efficient, using less space.
+  2. Efficiently explores deep paths.
+  3. Useful for cycle detection and topological sorting.
+  4. Ideal for solving puzzles or path-finding where the path length isn't a concern.
+
+  #### Cons:
+  1. Can be trapped in deep or infinite paths.
+  2. Doesn't guarantee the shortest path in unweighted graphs.
+  3. More complex for cycle detection.
+
+  #### Best Use Case:
+  - Optimal for situations requiring exhaustive search or when exploring as far as possible is essential.
+   */
 }

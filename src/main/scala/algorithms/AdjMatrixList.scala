@@ -69,4 +69,38 @@ object AdjMatrixList extends App {
   graphList.addEdge(2, 3)
   graphList.addEdge(3, 0)
   println(graphList.toString)
+
+
+  /*
+  ### Adjacency List
+
+  #### Pros:
+  1. Space-efficient for sparse graphs.
+  2. Faster add/remove operations for vertices/edges.
+  3. Efficient for iterating over adjacent vertices.
+  4. Suitable for dynamically changing graph sizes.
+
+  #### Cons:
+  1. Slower to check for the existence of a specific edge.
+  2. Less efficient for very dense graphs.
+
+  #### Best Use Case:
+  - Ideal for sparse graphs and when frequent graph modifications or adjacency queries are needed.
+
+  ### Adjacency Matrix
+
+  #### Pros:
+  1. Quick edge existence checks.
+  2. More efficient for dense graphs.
+  3. Simple implementation for some algorithms.
+  4. Convenient for storing edge weights.
+
+  #### Cons:
+  1. Space-intensive, especially for sparse graphs.
+  2. Slower for iterating over neighbors.
+  3. Less efficient for adding/removing vertices.
+
+  #### Best Use Case:
+  - Optimal for dense graphs or when edge existence checks are common, and graph size is relatively static.
+   */
 }
