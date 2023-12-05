@@ -1,77 +1,49 @@
-package algorithms
-
 import scala.util.Random
 
-class Graph(var adjList: Map[Int, List[Int]]) {
+case class Edge(u: Int, v: Int)
+case class Graph(vertices: Set[Int], edges: List[Edge])
 
-  def contract(edge: (Int, Int)): Unit = {
-    val (u, v) = edge
+object Karger extends App  {
 
-    // Step 1: Update the adjacency list of u by merging the list of v into u
-    adjList = adjList.updated(u, adjList(u) ++ adjList(v).filter(_ != u))
+  def minCut(graph: Graph): Int = {
+    var (vertices, edges) = (graph.vertices, graph.edges)
 
-    // Step 2: Remove v from the graph
-    adjList -= v
+    while (vertices.size > 2) {
+      val edge = edges(Random.nextInt(edges.size))
+      edges = edges.filter(e => e != edge)
+      println(s"Contracting edge: ${edge.u} - ${edge.v}") // Print the edge being contracted
 
-    // Step 3: Update all references of v to u in the entire adjacency list
-    //         and remove any self-loops created in the process
-    adjList = adjList.map { case (vertex, neighbors) =>
-      val updatedNeighbors = neighbors.map {
-        case `v` => u
-        case other => other
-      }.filter(_ != vertex)  // Removing self-loops
-      (vertex, updatedNeighbors)
+      vertices -= edge.v
+      edges = edges.map { e =>
+        var (u, v) = (e.u, e.v)
+        if (u == edge.v) u = edge.u
+        if (v == edge.v) v = edge.u
+        Edge(u, v)
+      }.filter(e => e.u != e.v)
+
+      println(s"Current vertices: $vertices") // Print current vertices
+      println(s"Current edges: $edges") // Print current edges
     }
 
-    // Step 4: Optional - Remove duplicate edges if you don't want multi-edges
-    adjList = adjList.mapValues(_.distinct).toMap
+    edges.size
   }
 
-  def randomEdge(): (Int, Int) = {
-    val u = adjList.keys.toList(Random.nextInt(adjList.size))
-    val v = adjList(u)(Random.nextInt(adjList(u).size))
-    (u, v)
-  }
-
-  def numberOfEdges: Int = adjList.values.flatten.size / 2
-}
-
-
-object KargerAlgorithm extends App {
-  val adjList = Map(
-    1 -> List(2, 3, 4),
-    2 -> List(1, 3),
-    3 -> List(1, 2, 4),
-    4 -> List(1, 3)
+  /*
+  1 --- 2
+  |   / |
+  |  /  |
+  | /   |
+  3 --- 4
+   */
+  val testGraph = Graph(
+    vertices = Set(1, 2, 3, 4),
+    edges = List(Edge(1, 2), Edge(2, 3), Edge(3, 1), Edge(3, 4), Edge(2, 4))
   )
 
-  // 1 -- 2
-  // | \  |
-  // |  \ |
-  // 4 -- 3
-
-  // 1-2
-  // | \
-  // |  \
-  // 4 -- 3
-
-  // 1-2-3
-  //     |
-  //     4
-
-  // 1-2 -- 3-4
-
-  def kargerMinCut(graph: Graph): Int = {
-    while (graph.adjList.size > 2) {
-      val edge = graph.randomEdge()
-      graph.contract(edge)
-    }
-    graph.numberOfEdges
-  }
-
-
-  val graph = new Graph(adjList)
-  val minCut = kargerMinCut(graph)
-  println(s"The minimum cut has $minCut edges.")
-  println(s"The graph is ${graph.adjList}.")
+  /*
+    1. 1-2, 2-3, 3-1
+    2: 3 - 4, 2- 4
+    3: 1 -2, 2 - 3, 3 - 1
+   */
+  println(minCut(testGraph))
 }
