@@ -1,5 +1,5 @@
 package algorithms
-import scala.collection.mutable.Queue
+import scala.collection.mutable
 
 
 case class Edge(u: Int, v: Int)
@@ -9,7 +9,7 @@ object TopologicalSort extends App {
 
   def kahn(graph: Graph): List[Int] = {
     var inDegree = graph.vertices.map(v => (v, graph.edges.count(_.v == v))).toMap
-    val queue = Queue[Int]()
+    val queue = mutable.Queue[Int]()
     var result = List[Int]()
 
     inDegree.filter(_._2 == 0).foreach(d => queue.enqueue(d._1))
@@ -33,6 +33,34 @@ object TopologicalSort extends App {
     result
   }
 
+  def dfs(graph: Graph): List[Int] = {
+    val visited = mutable.Set[Int]()
+    val stack = mutable.Stack[Int]()
+
+    def recurse(v: Int): Unit = {
+      visited.add(v)
+
+      graph
+        .edges
+        .filter(_.u == v)
+        .foreach { edge =>
+          if (!visited.contains(edge.v)) {
+            recurse(edge.v)
+          }
+        }
+
+      stack.push(v)
+    }
+
+    graph.vertices.foreach { v =>
+      if (!visited.contains(v)) {
+        recurse(v)
+      }
+    }
+
+    stack.toList
+  }
+
   /*
     1 -> 2
     |  / ^
@@ -52,4 +80,5 @@ object TopologicalSort extends App {
   )
 
   println(kahn(testGraph))
+  println(dfs(testGraph))
 }
