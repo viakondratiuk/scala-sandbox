@@ -1,4 +1,4 @@
-name := "udemy-akka-essentials"
+name := "scala-sandbox"
 
 version := "0.1"
 
