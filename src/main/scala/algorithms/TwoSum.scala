@@ -28,7 +28,13 @@ object Solutions {
     res
   }
 
-  // hash
+  def hash(l: List[Int], target: Int): List[(Int, Int)] = {
+    val indexMap = l.zipWithIndex.groupBy(_._1).mapValues(_.map(_._2))
+
+    l.zipWithIndex.flatMap { case (v, i) =>
+      indexMap.getOrElse(target - v, List()).filter(_ > i).map(j => (i, j))
+    }
+  }
 
   // 3 sum
 }
@@ -37,8 +43,9 @@ object TwoSum extends App {
   // fraud detection, portfolio rebalance
 
   val l = List(1, 3, 5, 7, 9, 11, 12, 12)
-  val target = 13
+  val target = 16
 
   println(Solutions.bruteForce(l, target))
   println(Solutions.sorted(l, target))
+  println(Solutions.hash(l, target))
 }
