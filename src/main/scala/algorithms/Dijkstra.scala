@@ -22,6 +22,10 @@ case class GraphD(vertices: Set[String], edges: List[EdgeD])
  *
  * Can't add 100 to all nodes
  * Can't replace all nodes as 1, to use dfs
+ *
+ * Complexity
+ *  - binary heap O((V + E) log_V)
+ *  - fibonacci heap O(V*Log_V + E)
  */
 
 object Dijkstra extends App {
