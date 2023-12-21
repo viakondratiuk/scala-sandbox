@@ -33,7 +33,7 @@ object Dijkstra extends App {
   def algo(graph: GraphD, start: String, end: String): (Int, mutable.Map[String, String]) = {
     val distances = mutable.Map(graph.vertices.map(v => v -> (if (v == start) 0 else Int.MaxValue)).toSeq: _*)
     val previous = mutable.Map[String, String]()
-    val queue = mutable.PriorityQueue[(String, Int)]()(Ordering.by(-_._2))
+    val queue = mutable.PriorityQueue[(String, Int)]()(Ordering.by[(String, Int), Int](_._2).reverse)
 
     distances.foreach { case (vertex, distance) =>
       queue.enqueue((vertex, distance))
