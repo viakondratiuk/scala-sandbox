@@ -13,6 +13,7 @@ package algorithms
       Left Rotation (LL)
       Left-Right Rotation (LR)
       Right-Left Rotation (RL)
+      https://www.educative.io/answers/common-avl-rotation-techniques
 
   - Insertions in AVL Tree
       Like BST but with possible rotations
