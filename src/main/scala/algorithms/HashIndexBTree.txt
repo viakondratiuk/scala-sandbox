@@ -1,0 +1,37 @@
+1. Structure and Principle:
+    Hash Index:
+    - Uses hash function to compute the index of a key in an array.
+    - Designed for equality comparisons, fast retrieval for operations that involve exact matches.
+    - Doesn't store keys in sorted order, no relation between keys
+
+    B-Tree Index:
+    - B-Tree index maintains sorted data and allows searches, sequential access, insertions, and deletions in O(log N).
+    - Designed to work with storages that read and write large blocks of data, like hard drives.
+    - B-Trees store sorted keys. Suitable for range queries and ordered data retrieval.
+
+2. Performance Characteristics:
+    Hash Index:
+    - Efficient for equality searches (find records where column = value). Mostly O(1), with uniform hash function.
+    - Not suitable for range-based searches
+
+    B-Tree Index:
+    - Best for a wider range of queries: equality searches, range searches, and ordered data retrieval O(log N).
+    - B-Trees are optimized for systems that read and write large blocks of data, which is typical in database storage.
+
+3. Handling of Collisions:
+    Hash Index:
+    - Can have collisions
+    - Performance can degrade for not uniform hash function
+
+    B-Tree Index:
+    - No collisions. If multiple keys have the same value, the tree structure naturally accommodates them, and the order is preserved.
+    - Designed to remain balance via rotations and splits, ensuring consistent performance even as elements are added or removed.
+
+4. Use Cases:
+    Hash Index:
+    - Preferred in scenarios where the query pattern is predominantly based on equality comparisons.
+    - Often used in in-memory data structures and certain types of database indexes where quick, direct access is required.
+
+    B-Tree Index:
+    - Suitable for a wide range of database operations, including searching, sequential access, and range queries.
+    - Commonly used as the default index type in many database systems due to its versatility and performance characteristics.
