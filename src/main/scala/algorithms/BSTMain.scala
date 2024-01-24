@@ -27,37 +27,48 @@ package algorithms
           that of the in-order successor, then delete the in-order successor.
  */
 
-class Node(val data: Int) {
+case class Node(key: Int, value: String) {
   var left: Option[Node] = None
   var right: Option[Node] = None
 }
 
-object BinarySearchTree {
-
-  def binaryInsert(root: Option[Node], node: Node): Option[Node] = root match {
+object BST {
+  def insert(root: Option[Node], node: Node): Option[Node] = root match {
     case None =>
       Some(node)
     case Some(r) =>
-      if (r.data > node.data) {
-        r.left = binaryInsert(r.left, node)
-      } else {
-        r.right = binaryInsert(r.right, node)
+      if (r.key > node.key) {
+        r.left = insert(r.left, node)
+      } else if (r.key < node.key) {
+        r.right = insert(r.right, node)
       }
-      Some(r)
+      root
+  }
+
+  def get(root: Option[Node], key: Int): Option[Node] = root match {
+    case None => None
+    case Some(r) =>
+      if (key < r.key) {
+        get(r.left, key)
+      } else if (key > r.key) {
+        get(r.right, key)
+      } else {
+        root
+      }
   }
 
   def inOrderPrint(root: Option[Node]): Unit = root match {
     case None =>
     case Some(r) =>
       inOrderPrint(r.left)
-      print(r.data + ", ")
+      print(r.key + ", ")
       inOrderPrint(r.right)
   }
 
   def preOrderPrint(root: Option[Node]): Unit = root match {
     case None =>
     case Some(r) =>
-      print(r.data + ", ")
+      print(r.key + ", ")
       preOrderPrint(r.left)
       preOrderPrint(r.right)
   }
@@ -73,16 +84,15 @@ object BinarySearchTree {
 
 object BSTMain extends App {
   var root: Option[Node] = None
-  val nodes = List(3, 7, 1, 5, 9)
+  val nodes = List((3, "Kyiv"), (7, "Dnipro"), (1, "Lviv"), (5, "Mariupol"), (9, "Zhytomyr"))
 
-  nodes.foreach { value =>
-    val node = new Node(value)
-    root = BinarySearchTree.binaryInsert(root, node)
+  nodes.foreach { case(key, value) =>
+    root = BST.insert(root, Node(key, value))
   }
 
   println("In-order traversal:")
-  BinarySearchTree.inOrderPrint(root)
+  BST.inOrderPrint(root)
 
-  println("\nPre-order traversal:")
-  BinarySearchTree.preOrderPrint(root)
+  println("Pre-order traversal:")
+  BST.preOrderPrint(root)
 }
