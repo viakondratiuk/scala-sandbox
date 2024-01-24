@@ -59,8 +59,37 @@ class HashTableBinary(val size: Int) {
   }
 }
 
+class HashTableOpen[K, V](val size: Int) {
+  private val keys = new Array[Any](size)
+  private val values = new Array[Any](size)
 
-object HashTableExample extends App {
+  private def hash(key: K): Int = {
+    key.hashCode() % size
+  }
+
+  def put(key: K, value: V): Unit = {
+    var index = hash(key)
+    while (keys(index) != null && keys(index) != key) {
+      index = (index + 1) % size // Linear probing
+    }
+    keys(index) = key
+    values(index) = value
+  }
+
+  def get(key: K): Option[V] = {
+    var index = hash(key)
+    while (keys(index) != null) {
+      if (keys(index) == key) {
+        return Some(values(index).asInstanceOf[V])
+      }
+      index = (index + 1) % size // Linear probing
+    }
+    None
+  }
+}
+
+object HashTableExamples extends App {
+  println("- Chaining Linked List:")
   val chain = new HashTableChaining[String, Int](10)
   chain.put("key1", 1)
   chain.put("key2", 2)
@@ -69,6 +98,7 @@ object HashTableExample extends App {
   chain.remove("key1")
   println(chain.get("key1"))
 
+  println("\n- Chaining Binary Tree:")
   val bin = new HashTableBinary(10)
   var root: Option[Node] = None
   val nodes = List((3, "Kyiv"), (7, "Dnipro"), (1, "Lviv"), (5, "Mariupol"), (9, "Zhytomyr"))
@@ -79,4 +109,11 @@ object HashTableExample extends App {
   println(bin.get(3))
   println(bin.get(5))
   println(bin.get(11))
+
+  println("\n- Open Addressing:")
+  val hashTable = new HashTableOpen[String, Int](10)
+  hashTable.put("key1", 1)
+  hashTable.put("key2", 2)
+  println(hashTable.get("key1"))
+  println(hashTable.get("key3"))
 }
