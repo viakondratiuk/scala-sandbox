@@ -1,0 +1,7 @@
+Good Hash Function
+  - Deterministic: same output for the same input
+  - Fast computation
+  - Low collision probability
+
+Universal Hashing
+  - Family of hash function, designed to have low collisions for 2 same inputs

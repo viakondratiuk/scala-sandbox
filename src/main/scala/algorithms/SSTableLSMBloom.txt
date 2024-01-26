@@ -1,0 +1,7 @@
+SSTable(Sorted-String Table)
+  - immutable sorted disk structure flushed from MemTable
+LSM Tree(Log_Structured Merged Tree)
+  - optimized for write intense
+  - consist of merged and compacted SSTables
+Bloom filter
+  - used to avoid disk reads
