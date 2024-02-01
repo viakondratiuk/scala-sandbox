@@ -29,6 +29,7 @@
 
 4. Use Cases:
     Hash Index:
+    - Only in memory
     - Preferred in scenarios where the query pattern is predominantly based on equality comparisons.
     - Often used in in-memory data structures and certain types of database indexes where quick, direct access is required.
 

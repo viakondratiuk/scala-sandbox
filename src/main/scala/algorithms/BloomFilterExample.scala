@@ -3,6 +3,7 @@ package algorithms
 import scala.util.hashing.MurmurHash3
 
 class BloomFilter[T](val size: Int, val hashFunctions: Int) {
+  // BitSet
   private val bits = new Array[Boolean](size)
 
   def add(item: T): Unit = {

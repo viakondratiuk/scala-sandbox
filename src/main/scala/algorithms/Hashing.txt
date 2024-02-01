@@ -5,3 +5,20 @@ Good Hash Function
 
 Universal Hashing
   - Family of hash function, designed to have low collisions for 2 same inputs
+  - pathological dataset -- linear structure
+
+
+01.02.24
+- [x] Good hash function with low collisions - overview, universal hashing (collision prob is less)
+- [x] Hash Index
+- + Compare with B-tree index
+- [x] Bloom, Log-structured merged tree(LSM), SSTable
+- [x] Hash Table
+- +Bucket
+- +Collision
+- Collision Resolution
+    - +Chaining with Linked List
+    - +Chaining with BST
+    - +Open Addressing (Linear Probing)
+- [x] Bloom Filter
+- Code frequent password or orpho mistakes
