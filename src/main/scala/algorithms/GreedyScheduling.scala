@@ -1,5 +1,21 @@
 package algorithms
 
+
+/**
+ - Looks for local minimum and can miss global one
+    - Typical problem: coin change for less coins is not optimal
+      - Greedy
+        - You have coins [4,3,1] and want 6
+        - Greedy would take 4, 1, 1
+        - Optimal is 3,3
+      - Better is dynamic programming
+  - Can be faster than other approaches
+  - Complexity is determined on how algorithm works
+  - Simple and efficient
+  - Used to solve tasks when local optimum is also a global one, when global solution can be build from incremental local solutions
+  - Takes immediate decision without looking for entire set
+ */
+
 case class Activity(start: Int, end: Int)
 
 object ActivitySelection {
