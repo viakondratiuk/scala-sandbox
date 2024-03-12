@@ -14,12 +14,9 @@ case class GraphW(vertices: Set[Int], edges: List[EdgeW]) {
     var mst = List[EdgeW]()
 
     def addEdge(vertex: Int): Unit = {
-      visited.add(vertex)
-      for (edge <- edges if edge.u == vertex || edge.v == vertex) {
-        if (!visited(edge.u) || !visited(edge.v)) {
-          pq.enqueue(edge)
-        }
-      }
+      visited += vertex
+      edges.filter(edge => (edge.u == vertex || edge.v == vertex) && (!visited(edge.u) || !visited(edge.v)))
+        .foreach(pq.enqueue(_))
     }
 
     addEdge(vertices.head)
@@ -31,7 +28,6 @@ case class GraphW(vertices: Set[Int], edges: List[EdgeW]) {
         if (!visited(edge.u)) addEdge(edge.u) else addEdge(edge.v)
       }
     }
-
     mst
   }
 }
@@ -40,9 +36,9 @@ case class GraphW(vertices: Set[Int], edges: List[EdgeW]) {
 object PrimMSTExample extends App {
   val vertices = Set(1, 2, 3, 4)
   val edges = List(EdgeW(1, 2, 1), EdgeW(2, 3, 4), EdgeW(1, 3, 3), EdgeW(3, 4, 2), EdgeW(2, 4, 5))
-  val graph = GraphW(vertices, edges)
+  val mst = GraphW(vertices, edges).primMST()
 
-  val mst = graph.primMST()
-  println("Minimum Spanning Tree:")
-  mst.foreach(edge => println(s"${edge.u} - ${edge.v} : ${edge.weight}"))
+  println(s"MST Cost: ${mst.map(_.weight).sum}")
+  println("MST Edges:")
+  mst.foreach(edge => println(s"${edge.u} -> ${edge.v}"))
 }
