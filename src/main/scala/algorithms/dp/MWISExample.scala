@@ -5,18 +5,37 @@ import scala.collection.mutable
 case class TreeNode(value: Int, children: List[TreeNode])
 
 object MWIS {
-  def bottomUp(root: TreeNode): Int = {
-    def postOrder(node: TreeNode): (Int, Int) = {
-      val initial = (0, 0)
-      val results = node.children.foldLeft(initial) { (acc, child) =>
-        val (childInc, childExc) = postOrder(child)
-        (acc._1 + childExc, acc._2 + math.max(childInc, childExc))
+  def bottomUp(root: TreeNode): (Int, Set[Int]) = {
+    // Node to include and exclude values ++ sets
+    val resultMap = scala.collection.mutable.Map.empty[TreeNode, ((Int, Set[Int]), (Int, Set[Int]))]
+
+    // Node and state of processed children
+    val stack = scala.collection.mutable.Stack[(TreeNode, Boolean)]()
+    stack.push((root, false))
+
+    while (stack.nonEmpty) {
+      val (node, visited) = stack.pop()
+      if (node.children.isEmpty || visited) {
+        // Calculate the sums and sets when all children have been processed or node has no children
+        val initial = ((0, Set.empty[Int]), (0, Set.empty[Int]))
+        val results = node.children.foldLeft(initial) { (acc, child) =>
+          val (childInc, childExc) = resultMap(child)
+          ((acc._1._1 + childExc._1, acc._1._2 ++ childExc._2),
+            (acc._2._1 + math.max(childInc._1, childExc._1),
+              if (childInc._1 > childExc._1) acc._2._2 ++ childInc._2 else acc._2._2 ++ childExc._2))
+        }
+        resultMap(node) = ((results._1._1 + node.value, results._1._2 + node.value), results._2)
+      } else {
+        // Mark the current node as visited and push it back to the stack
+        stack.push((node, true))
+        // Push all children to the stack to be processed
+        node.children.foreach(child => stack.push((child, false)))
       }
-      (results._1 + node.value, results._2)
     }
 
-    val (includeRoot, excludeRoot) = postOrder(root)
-    math.max(includeRoot, excludeRoot)
+    val ((includeRootSum, includeRootSet), (excludeRootSum, excludeRootSet)) = resultMap(root)
+    if (includeRootSum > excludeRootSum) (includeRootSum, includeRootSet)
+    else (excludeRootSum, excludeRootSet)
   }
 
   def topDown(root: TreeNode): Int = {
@@ -42,6 +61,15 @@ object MWIS {
 }
 
 object MWISExample extends App {
+  """
+    |        7
+    |       / \
+    |      6   5
+    |     /|  / \
+    |    4 3 2   1
+    |
+    |""".stripMargin
+
   val child1 = TreeNode(1, List())
   val child2 = TreeNode(2, List())
   val child3 = TreeNode(3, List())
